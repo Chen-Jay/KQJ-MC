@@ -6,14 +6,15 @@ class ClockInModel extends Model
 
     function __construct()
     {
-        $this->table_name='clock_in';
+        $this->table_name='kqj_clock_in';
     }
 
     public function clockIn()
     {   
         global $db;
         global $json;
-        $stmt=$db->prepare("INSERT INTO clock_in(stu_id,year,month,day,hour,minute,second,style) VALUES (:stu_id,:year,:month,:day,:hour,:minute,:second,:style)");
+        $sql='INSERT INTO kqj_clock_in(stu_id,year,month,day,hour,minute,second,style) VALUES (:stu_id,:year,:month,:day,:hour,:minute,:second,:style)';
+        $stmt=$db->prepare($sql);
 
         $date_time=explode(' ',$json['time']);
         $date=explode('-',$date_time[0]);

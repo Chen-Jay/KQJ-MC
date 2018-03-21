@@ -6,7 +6,7 @@ class OrderModel extends Model
 
     function __construct()
     {
-        $this->table_name='order';
+        $this->table_name='kqj_order';
     }
 
     /**
@@ -15,7 +15,7 @@ class OrderModel extends Model
     function numOfOrder()
     {
         global $db;
-        $stmt=$db->prepare('SELECT COUNT(*) FROM order WHERE status =0');
+        $stmt=$db->prepare('SELECT COUNT(*) FROM kqj_order WHERE `status` =0');
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result[0]['COUNT(*)'];
@@ -27,7 +27,7 @@ class OrderModel extends Model
     public function deleteOrder($id)
     {
         global $db;
-        $stmt=$db->prepare("DELETE FROM order WHERE id=:id;");
+        $stmt=$db->prepare("DELETE FROM kqj_order WHERE id=:id;");
         $stmt->execute(array('id'=>$id));
     
     }
@@ -38,7 +38,7 @@ class OrderModel extends Model
     public function modifyStatus($id,$value)
     {
         global $db;
-        $stmt=$db->prepare("UPDATE order SET `status`=:v WHERE id=:id;");
+        $stmt=$db->prepare("UPDATE kqj_order SET `status`=:v WHERE id=:id;");
         $stmt->execute(array('v'=>$value,'id'=>$id));
     }
 
@@ -48,7 +48,7 @@ class OrderModel extends Model
     public function getOrder($id)
     {
         global $db;
-        $stmt=$db->prepare('SELECT command FROM order WHERE id=:id');
+        $stmt=$db->prepare('SELECT command FROM kqj_order WHERE id=:id');
         $stmt->execute(array('id'=>$id));
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         $command=json_decode($result[0]['command'],true);
@@ -85,7 +85,7 @@ class OrderModel extends Model
                 'expired'=>'2015-12-10 12:10:10' //预留字段	
                 )
             );
-        return json_encode($order);	       
+        return json_encode($order,JSON_UNESCAPED_UNICODE);	       
     }
 
     /**
@@ -94,7 +94,7 @@ class OrderModel extends Model
     public function getTopId($num)
     {
         global $db;
-        $stmt=$db->query("SELECT id FROM order WHERE status!=1 ORDER BY id ASC LIMIT {$num}");
+        $stmt=$db->query("SELECT id FROM kqj_order WHERE status!=1 ORDER BY id ASC LIMIT {$num}");
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         $ids=array();
         for($i=0;$i<count($result);$i++)

@@ -6,7 +6,7 @@ class StudentModel extends Model
 
     function __construct()
     {
-        $this->table_name='student';
+        $this->table_name='kqj_student';
     }
 
     /**
@@ -15,7 +15,7 @@ class StudentModel extends Model
     public function checkId($Id)
     {
         global $db;
-        $sql='SELECT * FROM student WHERE stu_id=:id;';
+        $sql='SELECT * FROM kqj_student WHERE stu_id=:id;';
         $stmt=$db->prepare($sql);
         $stmt->execute(array('id'=>$Id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ class StudentModel extends Model
     public function updateUser($stu_id,$name,$class,$grade,$password/*headpic*/)
     {
         global $db;
-        $sql='UPDATE student SET stu_id=:stu_id,name=:name,class=:class,grade=:grade,password=:passwd WHERE stu_id=:u_id';
+        $sql='UPDATE kqj_student SET stu_id=:stu_id,name=:name,class=:class,grade=:grade,password=:passwd WHERE stu_id=:u_id';
         $stmt=$db->prepare($sql);
         $stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password,'u_id'=>$stu_id));
     }
@@ -38,7 +38,7 @@ class StudentModel extends Model
     public function addUser($stu_id,$name,$class,$grade,$password/*headpic*/)
     {
         global $db;
-        $sql='INSERT INTO student(stu_id,name,class,grade,password) VALUES(:stu_id,:name,:class,:grade,:passwd)';
+        $sql='INSERT INTO kqj_student(stu_id,name,class,grade,password) VALUES(:stu_id,:name,:class,:grade,:passwd)';
         $stmt=$db->prepare($sql);
         $stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password));
     }

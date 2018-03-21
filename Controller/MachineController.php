@@ -11,7 +11,5 @@ class MachineController extends Controller
         $user=$json['user'];
         $fingerprint=$json['fingerprint'];
         $machine->updateMachine($model,$space,$user,$fingerprint);
-        echo 'ok';
-
     }
 }

@@ -16,7 +16,7 @@ class MachineModel extends Model
     public function P_verifyMachine()
     {
         global $db;
-        $stmt=$db->prepare('SELECT count(*) FROM machine WHERE series_number=:sn;');
+        $stmt=$db->prepare('SELECT count(*) FROM kqj_machine WHERE series_number=:sn;');
         $stmt->execute(array('sn'=>$this->serial_number));
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         if($result[0]['count(*)']!=1)   //与数据库中考勤机序列号匹配
@@ -29,10 +29,9 @@ class MachineModel extends Model
     public function updateMachine($model,$space,$user,$fingerprint)
     {
         global $db;
-        $sql='UPDATE machine SET model=:model,space=:space,user=:user,fingerprint=:fingerprint WHERE series_number=:sn';
+        $sql='UPDATE kqj_machine SET model=:model,space=:space,user=:user,fingerprint=:fingerprint WHERE series_number=:sn';
         $stmt=$db->prepare($sql);
-        var_dump($stmt->execute(array('model'=>$model,'space'=>$space,'user'=>$user,'fingerprint'=>$fingerprint,'sn'=>$this->serial_number)));
-        var_dump ($this->serial_number);
+        $stmt->execute(array('model'=>$model,'space'=>$space,'user'=>$user,'fingerprint'=>$fingerprint,'sn'=>$this->serial_number));
     }
 
     
