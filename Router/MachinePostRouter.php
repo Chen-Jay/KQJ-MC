@@ -48,27 +48,25 @@ class MachinePostRouter extends Router
                 {
                 case 'user':
                     $controller=new UserController();
-                    $controller->handle();
                     break;
                 case 'fingerprint':
+                    $controller=new FingerprintController();
                     break;
                 case 'headpic':
                     break;
                 case 'clockin':
                     $controller=new ClockInController();
-                    $controller->handle();
                     break;
                 case 'info':
                     $controller=new MachineController();
-                    $controller->handle();
                     break;
                 case 'return':
                     $controller=new ReturnController();
-                    $controller->handle();
                     break;
                 default:
                     exit;
                 };
+        $controller->handle();
         
     }
 
