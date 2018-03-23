@@ -67,3 +67,14 @@ function autoloader($class)
         require $ROOTPATH.$i.'/'.$name.$i.'.php';
     }   
 }
+
+/**
+ * 日志管理（添加日志）
+ */
+function r_log($message)
+{
+    $Log=date('Y/m/d H:i:s')."\n".$message."\n";
+    $ROOTPATH=$_SERVER['DOCUMENT_ROOT'].'/';
+    file_put_contents($ROOTPATH.'RunningLog.log',$Log,FILE_APPEND);
+    exit;
+}

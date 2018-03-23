@@ -65,7 +65,7 @@ class MachinePostRouter extends Router
                     $controller=new ReturnController();
                     break;
                 default:
-                    exit;
+                    r_log("Unknown post order:".$json['data']);
                 };
         $controller->handle();
         

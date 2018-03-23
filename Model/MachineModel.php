@@ -21,7 +21,7 @@ class MachineModel extends Model
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         if($result[0]['count(*)']!=1)   //与数据库中考勤机序列号匹配
         {
-            exit;
+            r_log("This post message comes from an unknown machine");
         }
     }
 

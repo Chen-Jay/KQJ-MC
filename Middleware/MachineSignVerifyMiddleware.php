@@ -16,7 +16,7 @@ class MachineSignVerifyMiddleware implements Middleware
         }
         else    //不匹配则直接退出
         {
-            exit;
+            r_log("The digital sign is mismatched");
         }
     }
 }

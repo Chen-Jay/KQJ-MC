@@ -5,10 +5,6 @@ require_once 'InitialConfiguration.php';
 class KQJ extends Root
 {
 
-    public function shit()
-    {
-        echo'shit';
-    }
     public function start()
     {
         /**
@@ -31,7 +27,6 @@ class KQJ extends Root
         {
             case 3:
                 $router; //路由器
-                require_once 'InitialConfiguration.php'; //无法被自动识别的文件手动require进来
                 if($entrance[0]=='api'&&$entrance[1]='data'&&$entrance[2]=='post')   //判断为POST指令
                 { 
                     if(isset($_GET['sn']))  //考勤机发过来的POST消息一定会要带有sn（序列码）
@@ -45,7 +40,7 @@ class KQJ extends Root
                     }
                     else
                     {
-                        exit;
+                        r_log("no serial number");
                     }
                 }
                 elseif($entrance[0]=='api'&&$entrance[1]='data'&&$entrance[2]=='get') //判断为GET指令

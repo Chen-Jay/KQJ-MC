@@ -12,7 +12,7 @@ class HeadpicController extends Controller
         }
         else
         {
-            exit;
+            r_log("Try to update a headpic to a nonexistent student: the id of the non_student is ".$json['ccid']);
         }
     }
 }

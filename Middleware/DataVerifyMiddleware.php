@@ -18,7 +18,7 @@ class DataVerifyMiddleware implements Middleware
         $js=json_decode($data,true);
         if($js==NULL)	//数据不符合json格式
         {
-            die('invalid json');
+            r_log('Invalid json');
         }
         else if($this->isOneJson($js))	//只有一条json格式的数据
         {
@@ -37,15 +37,15 @@ class DataVerifyMiddleware implements Middleware
                 {
                     if(!isset($json['id']))
                     {
-                        die('no id');
+                        r_log("There isn't the key: id");
                     }
                     else if(!isset($json['data']))
                     {
-                        die('no data');
+                        r_log("There isn't the key: data");
                     }
                     else if(!is_numeric($json['id']))
                     {
-                        die('id not numetric');
+                        r_log("The order id isn't numetric");
                     }
                 }
             }
@@ -73,7 +73,7 @@ class DataVerifyMiddleware implements Middleware
                         }
                         //else
                         {
-                            die('user data error');
+                            r_log('user data error');
                         }
                     case 'fingerprint':
                         if(isset($json['ccid'])&&is_numeric($json['ccid'])&&
@@ -84,14 +84,14 @@ class DataVerifyMiddleware implements Middleware
                             {
                                 if(!is_string($fp))
                                 {
-                                    die('invalid fingerprint data');
+                                    r_log('invalid fingerprint data');
                                 }
                             }			
                             break;
                         }
                         else
                         {
-                            die('fingerprint data error');
+                            r_log('fingerprint data error');
                         }
                     case 'headpic':
                         if(isset($json['ccid'])&&is_numeric($json['ccid'])&&
@@ -102,7 +102,7 @@ class DataVerifyMiddleware implements Middleware
                         }
                         else
                         {
-                            die('headpic data error');
+                            r_log('headpic data error');
                         }
                     case 'clockin':
                         if(isset($json['ccid'])&&is_numeric($json['ccid'])&&
@@ -114,18 +114,18 @@ class DataVerifyMiddleware implements Middleware
                             {
                                 if(!is_string($json['pic']))
                                 {
-                                    die('invalid "pic"');
+                                    r_log('invalid "pic"');
                                 }
                             }
                             if($json['verify']!=0&&$json['verify']!=1)
                             {
-                                die('invalid "verify"');
+                                r_log('invalid "verify"');
                             }
                             break;
                         }
                         else
                         {
-                            die('clockin data error');
+                            r_log('clockin data error');
                         }
                     case 'info':
                         if(isset($json['model'])&&($json['model']=='Q1')&&
@@ -144,7 +144,7 @@ class DataVerifyMiddleware implements Middleware
                         }
                         else
                         {
-                            die('info data error');
+                            r_log('info data error');
                         }
                     case 'return':
                         if(isset($json['return'])==true)
@@ -153,12 +153,12 @@ class DataVerifyMiddleware implements Middleware
                         }
                         else
                         {
-                            die('return data error');
+                            r_log('return data error');
                         }
                     case 'unbound':
                         break;
                     default:
-                        die('invalid "data"');
+                        r_log('invalid "data"');
                     }
     }
 
