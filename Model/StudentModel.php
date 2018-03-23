@@ -42,4 +42,15 @@ class StudentModel extends Model
         $stmt=$db->prepare($sql);
         $stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password));
     }
+
+    /**
+     * 更新该学号的学生的头像
+     */
+    public function updateHeadpic($Id,$Headpic)
+    {
+        global $db;
+        $sql='UPDATE kqj_student SET headpic=:hp WHERE stu_id=:id';
+        $stmt=$db->prepare($sql);
+        $stmt->execute(array('hp'=>$Headpic,'id'=>$Id));
+    }
 }

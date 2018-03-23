@@ -53,6 +53,7 @@ class MachinePostRouter extends Router
                     $controller=new FingerprintController();
                     break;
                 case 'headpic':
+                    $controller=new HeadpicController();
                     break;
                 case 'clockin':
                     $controller=new ClockInController();
