@@ -128,8 +128,7 @@ class DataVerifyMiddleware implements Middleware
                             r_log('clockin data error');
                         }
                     case 'info':
-                        if(isset($json['model'])&&($json['model']=='Q1')&&
-                            isset($json['rom'])&&
+                        if( isset($json['rom'])&&
                             isset($json['app'])&&
                             isset($json['space'])&&is_numeric($json['space'])&&
                             isset($json['memory'])&&is_numeric($json['memory'])&&

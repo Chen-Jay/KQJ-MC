@@ -26,12 +26,12 @@ class MachineModel extends Model
     }
 
 
-    public function updateMachine($model,$space,$user,$fingerprint)
+    public function updateMachine($space,$user,$fingerprint)
     {
         global $db;
-        $sql='UPDATE kqj_machine SET model=:model,space=:space,user=:user,fingerprint=:fingerprint WHERE series_number=:sn';
+        $sql='UPDATE kqj_machine SET space=:space,user=:user,fingerprint=:fingerprint WHERE series_number=:sn';
         $stmt=$db->prepare($sql);
-        $stmt->execute(array('model'=>$model,'space'=>$space,'user'=>$user,'fingerprint'=>$fingerprint,'sn'=>$this->serial_number));
+        $stmt->execute(array('space'=>$space,'user'=>$user,'fingerprint'=>$fingerprint,'sn'=>$this->serial_number));
     }
 
     

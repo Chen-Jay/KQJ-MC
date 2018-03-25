@@ -8,7 +8,7 @@ class HeadpicController extends Controller
         $student=new StudentModel();
         if($student->checkId($json['ccid']))
         {
-            $student->updateHeadpic($json['headpic']);            
+            $student->updateHeadpic($json['ccid'],$json['headpic']);            
         }
         else
         {

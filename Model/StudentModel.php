@@ -38,7 +38,7 @@ class StudentModel extends Model
     public function addUser($stu_id,$name,$class,$grade,$password/*headpic*/)
     {
         global $db;
-        $sql='INSERT INTO kqj_student(stu_id,name,class,grade,password) VALUES(:stu_id,:name,:class,:grade,:passwd)';
+        $sql='INSERT INTO kqj_student(stu_id,`name`,class,grade,password) VALUES(:stu_id,:name,:class,:grade,:passwd)';
         $stmt=$db->prepare($sql);
         $stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password));
     }

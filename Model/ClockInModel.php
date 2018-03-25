@@ -13,15 +13,19 @@ class ClockInModel extends Model
     {   
         global $db;
         global $json;
-        $sql='INSERT INTO kqj_clock_in(stu_id,year,month,day,hour,minute,second,style) VALUES (:stu_id,:year,:month,:day,:hour,:minute,:second,:style)';
+        $sql='INSERT INTO kqj_clock_in(stu_id,`time`,style,pic) VALUES (:stu_id,:_time,:style,:pic)';
         $stmt=$db->prepare($sql);
 
-        $date_time=explode(' ',$json['time']);
-        $date=explode('-',$date_time[0]);
-        $time=explode(':',$date_time[1]);
-        $year=$date[0]; $month=$date[1]; $day=$date[2];
-        $hour=$time[0]; $minute=$time[1]; $second=$time[2];
 
+
+        // $date_time=explode(' ',$json['time']);
+        // $date=explode('-',$date_time[0]);
+        // $time=explode(':',$date_time[1]);
+        // $year=$date[0]; $month=$date[1]; $day=$date[2];
+        // $hour=$time[0]; $minute=$time[1]; $second=$time[2];
+
+        $time=$json['time'];
+        $pic=$json['pic'];
         $style;
         if($json['verify']==1)
         {
@@ -32,7 +36,7 @@ class ClockInModel extends Model
             $style='password';
         }
 
-        $stmt->execute(array('stu_id'=>$json['ccid'],'year'=>$year,'month'=>$month,'day'=>$day,'hour'=>$hour,'minute'=>$minute,'second'=>$second,'style'=>$style));
+        $stmt->execute(array('stu_id'=>$json['ccid'],'_time'=>$time,'style'=>$style,'pic'=>$pic));
     }
     
 }
