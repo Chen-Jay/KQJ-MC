@@ -33,9 +33,9 @@ class StudentModel extends Model
     }
 
     /**
-     * 在表中添加学生（学号，姓名，班级，年级，密码，头像（待实现））
+     * 在表中添加学生（学号，姓名，班级，年级，密码）
      */
-    public function addUser($stu_id,$name,$class,$grade,$password/*headpic*/)
+    public function addUser($stu_id,$name,$class,$grade,$password)
     {
         global $db;
         $sql='INSERT INTO kqj_student(stu_id,`name`,class,grade,password) VALUES(:stu_id,:name,:class,:grade,:passwd)';
