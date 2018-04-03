@@ -31,7 +31,11 @@ class MachineModel extends Model
         global $db;
         $sql='UPDATE kqj_machine SET space=:space,user=:user,fingerprint=:fingerprint WHERE series_number=:sn';
         $stmt=$db->prepare($sql);
-        $stmt->execute(array('space'=>$space,'user'=>$user,'fingerprint'=>$fingerprint,'sn'=>$this->serial_number));
+        $if_success=$stmt->execute(array('space'=>$space,'user'=>$user,'fingerprint'=>$fingerprint,'sn'=>$this->serial_number));
+        if($if_success==false)
+        {
+            r_log("Update machine in Machine failed when execute:\n".'UPDATE kqj_machine SET space='.$space.',user='.$user.',fingerprint='.$fingerprint.' WHERE series_number='.$this->Serial_number);
+        }
     }
 
     

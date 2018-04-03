@@ -17,7 +17,11 @@ class StudentModel extends Model
         global $db;
         $sql='SELECT * FROM kqj_student WHERE stu_id=:id;';
         $stmt=$db->prepare($sql);
-        $stmt->execute(array('id'=>$Id));
+        $if_success=$stmt->execute(array('id'=>$Id));
+        if($if_success==false)
+        {
+            r_log("Check id in Student failed");
+        }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -29,7 +33,11 @@ class StudentModel extends Model
         global $db;
         $sql='UPDATE kqj_student SET stu_id=:stu_id,name=:name,class=:class,grade=:grade,password=:passwd WHERE stu_id=:u_id';
         $stmt=$db->prepare($sql);
-        $stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password,'u_id'=>$stu_id));
+        $if_success=$stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password,'u_id'=>$stu_id));
+        if($if_success==false)
+        {
+            r_log("Update user in Student failed.");
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class StudentModel extends Model
     public function addUser($stu_id,$name,$class,$grade,$password)
     {
         global $db;
-        $sql='INSERT INTO kqj_student(stu_id,`name`,class,grade,password) VALUES(:stu_id,:name,:class,:grade,:passwd)';
+        $sql='INSERT INTO kqj_student(stu_id,stu_name,class,grade,`password`) VALUES(:stu_id,:name,:class,:grade,:passwd)';
         $stmt=$db->prepare($sql);
-        $stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password));
+        $if_success=$stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password));
+        if($if_success==false)
+        {
+            r_log("Add user in Student failed when execute:\n".'INSERT INTO kqj_student(stu_id,stu_name,class,grade,`password`) VALUES('.$stu_id.','.$name.','.$class.','.$grade.','.$password.')');
+        }
     }
 
     /**
@@ -51,6 +63,11 @@ class StudentModel extends Model
         global $db;
         $sql='UPDATE kqj_student SET headpic=:hp WHERE stu_id=:id';
         $stmt=$db->prepare($sql);
-        $stmt->execute(array('hp'=>$Headpic,'id'=>$Id));
+        $if_success=$stmt->execute(array('hp'=>$Headpic,'id'=>$Id));
+        if($if_success==false)
+        {
+        $sql='UPDATE kqj_student SET headpic=:hp WHERE stu_id=:id';
+        r_log("Update headpic in Student failed when execute:\n".'UPDATE kqj_student SET headpic='.$Headpic.' WHERE stu_id='.$Id);
+        }
     }
 }

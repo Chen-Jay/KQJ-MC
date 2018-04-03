@@ -4,7 +4,14 @@
  * 设置全局的数据库对象
  * 此处需要改进，通过读入配置文件来进行参数的设置
  */
-$db=new PDO("mysql:dbname=kqj;port=3306;host=127.0.0.1;charset=utf8mb4","kqj","kqjpass");
+try
+{
+    $db=new PDO("mysql:dbname=kqj;port=3306;host=127.0.0.1;charset=utf8mb4","kqj","kqjpass");
+} 
+catch(PDOException $exception)
+{
+    echo 'Connection failed: '.$exception->getMessage();
+}
 
 $raw;   //用于缓存未经处理的http体
 

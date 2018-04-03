@@ -36,7 +36,11 @@ class ClockInModel extends Model
             $style='password';
         }
 
-        $stmt->execute(array('stu_id'=>$json['ccid'],'_time'=>$time,'style'=>$style,'pic'=>$pic));
+        $if_success=$stmt->execute(array('stu_id'=>$json['ccid'],'_time'=>$time,'style'=>$style,'pic'=>$pic));
+        if($if_success==false)
+        {
+            r_log("clock in failed when excute:\n".'INSERT INTO kqj_clock_in(stu_id,`time`,style,pic) VALUES ('.$json['ccid'].','.$time.','.$style.','.$pic.')');
+        }
     }
     
 }

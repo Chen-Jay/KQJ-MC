@@ -16,7 +16,11 @@ class OrderModel extends Model
     {
         global $db;
         $stmt=$db->prepare('SELECT COUNT(*) FROM kqj_order WHERE `status` =0');
-        $stmt->execute();
+        $if_success=$stmt->execute();
+        if($if_success==false)
+        {
+            r_log("Count num in Order failed when execute:\n".'SELECT COUNT(*) FROM kqj_order WHERE `status` =0');
+        }
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result[0]['COUNT(*)'];
     }
@@ -28,7 +32,11 @@ class OrderModel extends Model
     {
         global $db;
         $stmt=$db->prepare("DELETE FROM kqj_order WHERE id=:id;");
-        $stmt->execute(array('id'=>$id));
+        $if_success=$stmt->execute(array('id'=>$id));
+        if($if_success==false)
+        {
+            r_log("Delete order in Order failed when execute:\n".'DELETE FROM kqj_order WHERE id='.$id);
+        }
     
     }
 
@@ -39,7 +47,11 @@ class OrderModel extends Model
     {
         global $db;
         $stmt=$db->prepare("UPDATE kqj_order SET `status`=:v WHERE id=:id;");
-        $stmt->execute(array('v'=>$value,'id'=>$id));
+        $if_success=$stmt->execute(array('v'=>$value,'id'=>$id));
+        if($if_success==false)
+        {
+            r_log("Modify status in Order failed when execute:\n".'UPDATE kqj_order SET `status`='.$value.' WHERE id='.$id.';');
+        }
     }
 
     /**
