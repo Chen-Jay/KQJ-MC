@@ -1,5 +1,5 @@
 <?php
-
+require_once 'InitialConfiguration.php';
 class StudentModel extends Model
 {
     private $table_name;
@@ -22,6 +22,7 @@ class StudentModel extends Model
         {
             r_log("Check id in Student failed");
         }
+        // var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -31,9 +32,10 @@ class StudentModel extends Model
     public function updateUser($stu_id,$name,$class,$grade,$password/*headpic*/)
     {
         global $db;
-        $sql='UPDATE kqj_student SET stu_id=:stu_id,name=:name,class=:class,grade=:grade,password=:passwd WHERE stu_id=:u_id';
+        $sql='UPDATE kqj_student SET stu_id=:stu_id,stu_name=:name_,class=:class,grade=:grade,password=:passwd WHERE stu_id=:u_id';
         $stmt=$db->prepare($sql);
-        $if_success=$stmt->execute(array('stu_id'=>$stu_id,'name'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password,'u_id'=>$stu_id));
+        $if_success=$stmt->execute(array('stu_id'=>$stu_id,'name_'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password,'u_id'=>$stu_id));
+        // var_dump(array('stu_id'=>$stu_id,'name_'=>$name,'class'=>$class,'grade'=>$grade,'passwd'=>$password,'u_id'=>$stu_id));
         if($if_success==false)
         {
             r_log("Update user in Student failed.");

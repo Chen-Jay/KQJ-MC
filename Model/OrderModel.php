@@ -1,5 +1,5 @@
 <?php
-
+require_once 'InitialConfiguration.php';
 class OrderModel extends Model
 {
     private $table_name;

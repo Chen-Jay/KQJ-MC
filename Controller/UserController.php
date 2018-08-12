@@ -1,4 +1,5 @@
 <?php
+require_once 'InitialConfiguration.php';
 
 class UserController extends Controller
 {
@@ -9,7 +10,7 @@ class UserController extends Controller
         if($student->checkId($json['ccid'])) //如过学生表中已经有了该学生，则更新数据
         {
             $student=new StudentModel();
-
+            // var_dump($json);
             $stu_id=$json['ccid'];
             $name=$json['name'];
             $class=$json['deptid']%10;

@@ -1,5 +1,5 @@
 <?php
-
+require_once 'InitialConfiguration.php';
 class FingerprintModel extends Model
 {
     public function checkId($Id)

@@ -34,7 +34,7 @@ class KQJ extends Root
                         global $raw;
                         $raw=file_get_contents('php://input'); //获取消息主体
                         $this->middlewareRegister('MachineSerialVerifyMiddleware'); //注册用于机器验证的中间件
-                        $this->middlewareRegister('DataVerifyMiddleware');  //注册用于数据验证的中间件
+                        // $this->middlewareRegister('DataVerifyMiddleware');  //注册用于数据验证的中间件
                         $router=new MachinePostRouter();   //创建管理POST指令的路由器
                         $router->setMessage($raw); 
                     }

@@ -6,7 +6,7 @@
  */
 try
 {
-    $db=new PDO("mysql:dbname=kqj;port=3306;host=127.0.0.1;charset=utf8mb4","kqj","kqjpass");
+    $db=new PDO("mysql:dbname=kqj;port=3306;host=127.0.0.1;charset=utf8mb4","kqj_root","btm");
 } 
 catch(PDOException $exception)
 {
@@ -80,8 +80,10 @@ function autoloader($class)
  */
 function r_log($message)
 {
-    $Log=date('Y/m/d H:i:s')."\n".$message."\n";
-    $ROOTPATH=$_SERVER['DOCUMENT_ROOT'].'/';
+    // $Log=date('Y/m/d H:i:s')."\n".$message."\n";
+    $Log=date('Y/m/d H:i:s')."\n"."我操你妈的"."\n";
+    $ROOTPATH=$_SERVER['DOCUMENT_ROOT'].'/'.'KQJ-MC'.'/';
     file_put_contents($ROOTPATH.'RunningLog.log',$Log,FILE_APPEND);
+    echo($message);
     exit;
 }

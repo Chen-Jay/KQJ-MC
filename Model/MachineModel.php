@@ -1,5 +1,5 @@
 <?php
-
+require_once 'InitialConfiguration.php';
 class MachineModel extends Model
 {
     private $serial_number;
