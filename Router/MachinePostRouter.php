@@ -16,6 +16,7 @@ class MachinePostRouter extends Router
 
         if($this->isOneJson($js))	//只有一条数据的情况，为其分配controller
         {
+           
             $ids[]=$js['id'];
             $this->route($js);
         }
@@ -23,16 +24,22 @@ class MachinePostRouter extends Router
         {
             foreach($js as $json)
             {
+                // var_dump($js);
                 $ids[] = $json['id'];
                 $this->route($json);
             }
         }
-
+ 
         echo json_encode(array(
             'status' => 1,
             'info' => 'ok',
             'data' => $ids
         ));
+        // echo json_encode(array(
+        //     'status' => 1,
+        //     'info' => 'ok',
+        //     'data' => ["567631"]
+        // ));
     }
 
     /**
@@ -43,6 +50,7 @@ class MachinePostRouter extends Router
     {
         $controller;
         global $json;
+        // var_dump($js);
         $json=$js;
         switch($json['data'])
                 {

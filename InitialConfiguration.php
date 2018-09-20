@@ -57,8 +57,8 @@ class Root
 * 自动类载入器的实现
 */
 function autoloader($class)
-{  
-    global $ROOTPATH; 
+{   
+    // global $curl;
     $class_name=[
         'Router',
         'Controller',
@@ -71,8 +71,11 @@ function autoloader($class)
             continue;
         $end=strpos($class,$i);
         $name=substr($class,0,$end);
-        require $ROOTPATH.$i.'/'.$name.$i.'.php';
+        // echo ROOTPATH.$i.'/'.$name.$i.'.php'."\n";
+        require_once ROOTPATH.$i.'/'.$name.$i.'.php';
+
     }   
+    
 }
 
 /**
@@ -81,9 +84,8 @@ function autoloader($class)
 function r_log($message)
 {
     // $Log=date('Y/m/d H:i:s')."\n".$message."\n";
-    $Log=date('Y/m/d H:i:s')."\n"."我操你妈的"."\n";
-    $ROOTPATH=$_SERVER['DOCUMENT_ROOT'].'/'.'KQJ-MC'.'/';
-    file_put_contents($ROOTPATH.'RunningLog.log',$Log,FILE_APPEND);
+    $Log=date('Y/m/d H:i:s')."\n";
+    file_put_contents(ROOTPATH.'RunningLog.log',$Log,FILE_APPEND);
     echo($message);
     exit;
 }

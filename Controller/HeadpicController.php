@@ -5,6 +5,7 @@ class HeadpicController extends Controller
     public function handle()
     {
         global $json;
+        // var_dump($json);
         $student=new StudentModel();
         if($student->checkId($json['ccid']))
         {

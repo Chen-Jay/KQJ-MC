@@ -1,7 +1,6 @@
 <?php
 require_once 'InitialConfiguration.php';
 
-
 class KQJ extends Root
 {
 
@@ -10,8 +9,10 @@ class KQJ extends Root
         /**
          * 使用自动加载器，自动将需要的php文件require进来
          */
+        define('ROOTPATH',$_SERVER['DOCUMENT_ROOT'].'/'.'KQJ-MC'.'/');  //将当前的初始路径储存为$WkPath，用于寻找其他php文件
         spl_autoload_register('autoloader'); //注册autoloader
-        $ROOTPATH=$_SERVER['DOCUMENT_ROOT'].'/';  //将当前的初始路径储存为$WkPath，用于寻找其他php文件
+        // echo $_SERVER['DOCUMENT_ROOT'].'/';
+        
 
 
         /**
